@@ -9,6 +9,7 @@ attackBtn.addEventListener("click", (event) => {
     console.log("button is clicked");
     is_clicked = true;
     console.log(is_clicked)
+    // test
 });
 
 export function playerMenu() {
