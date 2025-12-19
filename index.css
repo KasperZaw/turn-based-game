@@ -1,0 +1,15 @@
+@import "./characters/characters.css";
+body {
+    background-image: url("./first-bg.png");
+}
+h1 {
+    color: red;
+}
+.fight-arena {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.enemies-group {
+    display: flex;
+}
