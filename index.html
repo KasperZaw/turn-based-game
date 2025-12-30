@@ -13,7 +13,27 @@
               <button data-route="game" class="route-btn">Gra</button>
               <button data-route="settings" class="route-btn">Ustawienia</button>
             </nav>
-        <section data-view="menu">MENU</section>
+        <section data-view="menu">
+            <form>
+                <h2>Logowanie</h2>
+              
+                <label>
+                  Email
+                  <input type="email" name="email" required>
+                </label>
+              
+                <br><br>
+              
+                <label>
+                  Hasło
+                  <input type="password" name="password" required>
+                </label>
+              
+                <br><br>
+              
+                <button type="submit">Zaloguj się</button>
+              </form>              
+        </section>
         <section data-view="game" hidden>
             <div class="fight-arena">
                 <div class="characters-group"></div>
