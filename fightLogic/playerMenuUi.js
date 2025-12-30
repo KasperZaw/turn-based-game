@@ -1,6 +1,19 @@
-export function playerMenuUi(characters_ui) {
-    
-    character.element = character_div;
-    character.nameElement = character_name;
-    character.imgElement = ch_img;
+import { createCharacter } from "../characters/ui.js";
+import { createEnemy } from "../enemies/ui_enemies.js";
+export function attackEnemy() {
+    const atc_btn = document.getElementById("attack_btn");
+    atc_btn.addEventListener("click", () => {
+        console.log("attack dzila")
+    })
+}
+export function playerMenuUi(characters, enemies) {
+    attackEnemy();
+    characters.forEach(character => {
+        createCharacter(character);
+    });
+
+    enemies.forEach(enemy => {
+        createEnemy(enemy);
+    });
+
 }

@@ -7,7 +7,8 @@ export const warrior = new Character(
     30,
     15,
     "Shield Slam",
-    "./character.png"
+    "./character.png",
+    0
 )
 export const mage = new Character(
     "Mage",
@@ -16,7 +17,8 @@ export const mage = new Character(
     30,
     15,
     "Shield Slam",
-    "./character.png"
+    "./character.png",
+    1
 )
 export const archer = new Character(
     "archer",
@@ -25,7 +27,8 @@ export const archer = new Character(
     30,
     15,
     "Shield Slam",
-    "./character.png"
+    "./character.png",
+    2
 )
 export const healer = new Character(
     "Healer",
@@ -34,6 +37,7 @@ export const healer = new Character(
     30,
     15,
     "Shield Slam",
-    "./character.png"
+    "./character.png",
+    3
 )
 export const character_arr = [warrior, mage, archer, healer];

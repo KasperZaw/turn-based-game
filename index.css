@@ -1,5 +1,16 @@
 @import "./characters/characters.css";
 body {
+    margin: 0;
+}
+nav {
+    position: absolute;
+}
+section {
+    height: 100vh;
+    width: 100vw;
+}
+
+[data-view="game"] {
     background-image: url("./first-bg.png");
 }
 h1 {

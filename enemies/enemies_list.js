@@ -7,7 +7,8 @@ export const ork = new Enemy (
     30,
     15,
     "Shield Slam",
-    "./enemy.png"
+    "./enemy.png",
+    0
 )
 export const elf = new Enemy (
     "Elf",
@@ -16,7 +17,8 @@ export const elf = new Enemy (
     30,
     15,
     "Shield Slam",
-    "./enemy.png"
+    "./enemy.png",
+    1
 )
 export const druid = new Enemy (
     "druid",
@@ -25,6 +27,7 @@ export const druid = new Enemy (
     30,
     15,
     "Shield Slam",
-    "./enemy.png"
+    "./enemy.png",
+    2
 )
 export const enemies_arr = [ork, elf, druid];
