@@ -13,12 +13,13 @@ export const gameState = {
     phase: "chooseEnemy",
     enemy_choice: "",
     player_choice: "",
+    enemy_id: null,
 }
 
 export function ascriptionState(characters, enemies) {
     gameState.characters = characters;
     gameState.activeCharacterIndex = 0;
-
+    gameState.enemy_id;
     gameState.enemies = enemies;
     gameState.activeEnemyIndex = 0
     gameState.phase = "chooseEnemy";
@@ -40,6 +41,16 @@ export function getActiveCharacter() {
     return gameState.characters[gameState.activeCharacterIndex]
 }
 
+export function attackEnemytest() {
+    const enemy = gameState.enemies[gameState.activeEnemyIndex];
+    const activeCharacter =
+    gameState.characters[gameState.activeCharacterIndex];
+    enemy.takeDmg(activeCharacter.ch_dmg);
+    console.log(activeCharacter.ch_dmg)
+    console.log(`enemy ma tyle hp: ${enemy.e_hp}`)
+    console.log("testowe dzialanie attaku")
+}
+
 export function getActiveEnemy() {
     return gameState.enemies[gameState.activeEnemyIndextak ]
 }
@@ -48,7 +59,7 @@ export function playerChoice(player_choice) {
 
 }
 
-export function chooseEnemy() {
+export function clickedEnemy() {
     
-
+   
 }

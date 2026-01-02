@@ -9,4 +9,7 @@ export class Enemy {
         this.e_img = e_img;
         this.e_id = e_id
     }
+    takeDmg(amount) {
+        this.e_hp -= amount;
+    }
 }

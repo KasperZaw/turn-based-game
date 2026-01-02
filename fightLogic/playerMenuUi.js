@@ -1,15 +1,29 @@
 import { createCharacter } from "../characters/ui.js";
 import { createEnemy } from "../enemies/ui_enemies.js";
 import { Character } from "../characters/characters.js";
-import { ascriptionState } from "./playerMenu.js";
-import { nextCharacterTurn } from "./playerMenu.js";
+import { ascriptionState, getActiveCharacter } from "./gameManager.js";
+import { nextCharacterTurn } from "./gameManager.js";
 import { Enemy } from "../enemies/enemies.js";
+import { clickedEnemy } from "./gameManager.js";
+import { attackEnemytest } from "./gameManager.js";
+
+
+export function pokazKliknietego(enemies) {
+    enemies.forEach(enemy => {
+        enemy.dom.addEventListener("click", () => {
+            console.log(enemy.e_id);
+            attackEnemytest();
+        })
+    })
+}
 
 export function chooseEnemy(enemies) {
     enemies.forEach(enemy => {
         enemy.dom.addEventListener("mouseenter", () => {
-            enemy.dom.classList.add("cursor-attack")
-            console.log("cursor zmieniony")
+            enemy.dom.classList.add("cursor-attack");
+            console.log("cursor zmieniony");
+            clickedEnemy();
+            pokazKliknietego(enemies);
         })
     })
 }
