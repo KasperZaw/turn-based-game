@@ -16,4 +16,5 @@ export function createEnemy(enemy) {
 
     enemies_group.appendChild(enemy_div);
     enemy.enemyImg = enemy_img;
+    enemy.dom = enemy_div
 }

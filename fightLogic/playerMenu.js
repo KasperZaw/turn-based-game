@@ -22,11 +22,13 @@ export function ascriptionState(characters, enemies) {
     gameState.enemies = enemies;
     gameState.activeEnemyIndex = 0
     gameState.phase = "chooseEnemy";
+    console.log("przypisanie powiodlo sie")
 }
 
 export function nextCharacterTurn() {
     gameState.activeCharacterIndex =
     (gameState.activeCharacterIndex + 1) % gameState.characters.length
+    console.log(`przelaczam na bohater ${gameState.activeCharacterIndex}`)
 }
 
 export function nextEnemyTurn() {
@@ -39,14 +41,14 @@ export function getActiveCharacter() {
 }
 
 export function getActiveEnemy() {
-    return gameState.enemies[gameState.activeCharacterIndex]
+    return gameState.enemies[gameState.activeEnemyIndextak ]
 }
 
 export function playerChoice(player_choice) {
-    
+
 }
 
-export function playerMenu() {
-
+export function chooseEnemy() {
+    
 
 }

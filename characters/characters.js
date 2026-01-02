@@ -11,9 +11,9 @@ export class Character {
     }
 
     takeDmg(amount) {
-        ch_hp -= amount;
+        this.ch_hp -= amount;
     }
     heal(amount) {
-        ch_p += amount
+        this.ch_p += amount
     }
 }
