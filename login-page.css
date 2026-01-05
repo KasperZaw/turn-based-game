@@ -1,10 +1,9 @@
 [data-view="menu"] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  [data-view="menu"][hidden] {
-    display: none;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-view="menu"][hidden] {
+  display: none;
+}

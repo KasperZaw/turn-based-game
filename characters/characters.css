@@ -1,25 +1,24 @@
 .characters-div {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 img {
-    height: 320px;
+  height: 320px;
 }
 
 .characters-group {
-    bottom: 150px;
-    left: 10px;
-    width: 100%;
-    display: flex;
-    gap: 10px;
-
+  bottom: 150px;
+  left: 10px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
 }
 
 .enemy-div {
-    transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 .enemy-div:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }

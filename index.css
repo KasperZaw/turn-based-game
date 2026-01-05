@@ -1,31 +1,33 @@
 @import "./characters/characters.css";
 @import url("./login-page.css");
 body {
-    margin: 0;
+  margin: 0;
 }
 nav {
-    position: absolute;
+  position: absolute;
 }
 section {
-    height: 100vh;
-    width: 100vw;
+  height: 100vh;
+  width: 100vw;
 }
 
 [data-view="game"] {
-    background-image: url("./first-bg.png");
+  background-image: url("./first-bg.png");
 }
 h1 {
-    color: red;
+  color: red;
 }
 .fight-arena {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .enemies-group {
-    display: flex;
+  display: flex;
 }
 
 .cursor-attack {
-    cursor: url("./miecz2.png") 0 0, pointer;
-  }
+  cursor:
+    url("./miecz2.png") 0 0,
+    pointer;
+}

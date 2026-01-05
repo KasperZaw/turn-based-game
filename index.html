@@ -1,54 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <main id="app">
-          <nav>
-              <button data-route="menu" class="route-btn">Menu</button>
-              <button data-route="game" class="route-btn">Gra</button>
-              <button data-route="settings" class="route-btn">Ustawienia</button>
-            </nav>
-        <section data-view="menu">
-            <form>
-                <h2>Logowanie</h2>
-              
-                <label>
-                  Email
-                  <input type="email" name="email" required>
-                </label>
-              
-                <br><br>
-              
-                <label>
-                  Hasło
-                  <input type="password" name="password" required>
-                </label>
-              
-                <br><br>
-              
-                <button type="submit">Zaloguj się</button>
-              </form>              
-        </section>
-        <section data-view="game" hidden>
-            <div class="fight-arena">
-                <div class="characters-group"></div>
-                <div class="enemies-group"></div>
-            </div>
-            <div class="player-menu">
-                <button id="spells_btn">spells</button>
-                <button id="items_btn">items</button>
-                <button id="attack_btn">attack</button>
-                <button id="heal_btn">heal</button>
-            </div>
-        </section>
-        <section data-view="settings" hidden>USTAWIENIA</section>
-      </main>
-      
-    <script src="./index.js" type="module" ></script>
-</body>
+      <nav>
+        <button data-route="menu" class="route-btn">Menu</button>
+        <button data-route="game" class="route-btn">Gra</button>
+        <button data-route="settings" class="route-btn">Ustawienia</button>
+      </nav>
+      <section data-view="menu">
+        <form>
+          <h2>Logowanie</h2>
+
+          <label>
+            Email
+            <input type="email" name="email" required />
+          </label>
+
+          <br /><br />
+
+          <label>
+            Hasło
+            <input type="password" name="password" required />
+          </label>
+
+          <br /><br />
+
+          <button type="submit">Zaloguj się</button>
+        </form>
+      </section>
+      <section data-view="game" hidden>
+        <div class="fight-arena">
+          <div class="characters-group"></div>
+          <div class="enemies-group"></div>
+        </div>
+        <div class="player-menu">
+          <button id="spells_btn">spells</button>
+          <button id="items_btn">items</button>
+          <button id="attack_btn">attack</button>
+          <button id="heal_btn">heal</button>
+        </div>
+      </section>
+      <section data-view="settings" hidden>USTAWIENIA</section>
+    </main>
+
+    <script src="./index.js" type="module"></script>
+  </body>
 </html>
