@@ -22,14 +22,14 @@ export function ascriptionState(characters, enemies) {
   gameState.enemy_id;
   gameState.enemies = enemies;
   gameState.activeEnemyIndex = 0;
-  gameState.phase = "chooseEnemy";
+  gameState.phase = "";
   console.log("przypisanie powiodlo sie");
 }
 
 export function nextCharacterTurn() {
   gameState.activeCharacterIndex =
     (gameState.activeCharacterIndex + 1) % gameState.characters.length;
-  console.log(`przelaczam na bohater ${gameState.activeCharacterIndex}`);
+  console.log(`przelaczam na bohater ${gameState.activeCharacterIndex} o nazwie ${gameState.activeCharacterIndex.ch_name}`);
 }
 
 export function nextEnemyTurn() {
@@ -47,12 +47,20 @@ export function attackEnemytest(enemy) {
   console.log(`bohater zadal dmg w wysokosci: ${activeCharacter.ch_dmg}`);
   console.log(`enemy ma tyle hp: ${enemy.e_hp}`);
   console.log("testowe dzialanie attaku");
+  gameState.phase = "endOfAttack";
+  console.log(gameState.phase)
 }
 
 export function getActiveEnemy() {
   return gameState.enemies[gameState.activeEnemyIndex];
 }
 
-export function playerChoice(player_choice) {}
-
-export function clickedEnemy() {}
+export function enemyAttack() {
+    const enemy = gameState.enemies[gameState.activeEnemyIndex];
+    const randomIndex = Math.floor(Math.random() * gameState.characters.length);
+    const target = gameState.characters[randomIndex];
+    target.takeDmg(enemy.e_dmg);    
+    console.log(`PRZECIWNIK WYBIERA GRACZA ${randomIndex}`);
+    console.log("enemy zadal orbrazenia")
+    // console.log(`bohater po ataku enemy ma: ${character.ch_hp} punktow hp.`)
+}
