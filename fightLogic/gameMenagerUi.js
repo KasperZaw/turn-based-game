@@ -6,40 +6,8 @@ import { nextCharacterTurn } from "./gameManager.js";
 import { Enemy } from "../enemies/enemies.js";
 import { attackEnemytest } from "./gameManager.js";
 import { enemyAttack } from "./gameManager.js";
+import { enemies_arr } from "../enemies/enemies_list.js";
 const atc_btn = document.getElementById("attack_btn");
-atc_btn.disabled = false;
-
-export function updateGameTest() {
-    if (gameState.phase === "endOfAttack") {
-        enemyAttack();
-        gameState.phase = "playerTurn";
-        atc_btn.disabled = false;
-    }
-}
-
-export function pokazKliknietego(enemies) {
-    console.log("funkcja klikniecie enemy do ataku dzziala")
-    enemies.forEach(enemy => {
-        enemy.dom.addEventListener("click", () => {
-            console.log(enemy.e_id);
-            attackEnemytest(enemy);
-            console.log(`atak zostal wykonany na postaci: ${enemy.e_id  }`)
-            console.log("pora na przeciwnika")
-            atc_btn.disabled = true;
-            updateGameTest();
-        })
-        gameState.phase = "endOfAttack";
-        console.log(gameState.phase)
-
-    })
-}
-
-export function attackEnemy(enemies) {
-    atc_btn.addEventListener("click", () => {
-        console.log("attack dzila");
-        pokazKliknietego(enemies);
-    })
-}
 
 export function gameManagerUi(heroes, enemies) {
     
@@ -52,7 +20,24 @@ export function gameManagerUi(heroes, enemies) {
     });
     ascriptionState(heroes,enemies)
  
-
-    attackEnemy(enemies);
-
+    atc_btn.addEventListener("click", () => {
+        if (gameState.phase !== "chooseEnemy") return;
+      
+        gameState.phase = "playerTurn";
+        console.log("Wybierz przeciwnika");
+        console.log(`faza zmieniona po kliknieciu attak na: ${gameState.phase}`)
+      });
+      enemies.forEach(enemy => {
+        enemy.dom?.addEventListener("click", () => {
+            if (gameState.phase !== "playerTurn") return;
+    
+            attackEnemytest(enemy);
+            console.log(`atak zostal wykonany na postaci: ${enemy.e_id  }`)
+            console.log("pora na przeciwnika")
+            gameState.phase = "enemyTurn";
+            enemyAttack();
+            gameState.phase = "chooseEnemy";
+        })
+    })
 }
+console.log(`${gameState.phase}`)
