@@ -29,12 +29,16 @@ export function gameManagerUi(heroes, enemies) {
         enemy.dom?.addEventListener("click", () => {
             if (gameState.phase !== "playerTurn") return;
             console.log(enemy.e_id)
-            attackEnemytest(enemy);
             showCharacter(enemy);
+            attackEnemytest(enemy);
             console.log(`atak zostal wykonany na postaci: ${enemy.e_id  }`)
             console.log("pora na przeciwnika")
             enemyTurn()
-            enemyAttack();
+            setTimeout(() => {
+
+                enemyAttack();
+                showCharacter(enemy);
+            },8000)
             chooseEnemy();
         })
     })

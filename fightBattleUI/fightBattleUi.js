@@ -1,5 +1,6 @@
-import { getActiveCharacter } from "../fightLogic/gameManager.js";
-import { getActiveEnemy } from "../fightLogic/gameManager.js";
+import { getActiveCharacter, getActiveEnemy } from "../fightLogic/gameManager.js";
+import { gameState } from "../fightLogic/gameManager.js";
+
 const dot = document.querySelector(".dot");
 
 export function dotArea(heroEl, enemyEl) {
@@ -36,21 +37,46 @@ export function resetAnimation(heroEl, enemyEl) {
 export function showCharacter(enemy) {
   const heroEl = getActiveCharacter().element;
   const enemyEl = enemy.dom;
+  const activeEnemy = getActiveEnemy().dom;
 
   const { heroDX, heroDY, enemyDX, enemyDY } =
     dotArea(heroEl, enemyEl);
+    const targetIndex = gameState.target;
+    const targetHero = gameState.characters[targetIndex];
+    const targetHeroEl = targetHero.element;
+    
+      console.log(targetHero)
 
-  requestAnimationFrame(() => {
-    heroEl.style.transform =
-      `translate(${heroDX}px, ${heroDY}px)`;
-  });
+  if(gameState.phase === "playerTurn") {
 
-  requestAnimationFrame(() => {
-    enemyEl.style.transform =
-      `translate(${enemyDX}px, ${enemyDY}px)`;
-  });
+    requestAnimationFrame(() => {
+      heroEl.style.transform =
+        `translate(${heroDX - 200}px, ${heroDY}px)`;
+    });
+  
+    requestAnimationFrame(() => {
+      enemyEl.style.transform =
+        `translate(${enemyDX + 200}px, ${enemyDY}px)`;
+    });
+  
+    setTimeout(() => {
+      resetAnimation(heroEl, enemyEl);
+    }, 3000);
+  } else {
+    requestAnimationFrame(() => {
+      targetHeroEl.style.transform =
+        `translate(${heroDX - 200}px, ${heroDY}px)`;
+        console.log("targetowanie dziala")
+    });
+  
+    requestAnimationFrame(() => {
+      activeEnemy.style.transform =
+        `translate(${enemyDX + 200}px, ${enemyDY}px)`;
+    });
+  
+    setTimeout(() => {
+      resetAnimation(targetHeroEl, activeEnemy);
+    }, 3000);
+  }
 
-  setTimeout(() => {
-    resetAnimation(heroEl, enemyEl);
-  }, 3000);
 }

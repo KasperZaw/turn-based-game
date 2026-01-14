@@ -10,6 +10,7 @@ export const gameState = {
   enemies: [],
   activeCharacterIndex: 0,
   activeEnemyIndex: 0,
+  target: 0,
   phase: "chooseEnemy",
   enemy_choice: "",
   player_choice: "",
@@ -20,6 +21,7 @@ export function ascriptionState(characters, enemies) {
   gameState.characters = characters;
   gameState.activeCharacterIndex = 0;
   gameState.enemy_id;
+  gameState.target;
   gameState.enemies = enemies;
   gameState.activeEnemyIndex = 0;
   gameState.phase = "chooseEnemy";
@@ -58,12 +60,18 @@ export function getActiveEnemy() {
   return gameState.enemies[gameState.activeEnemyIndex];
 }
 
+export function randomChoiceE() {
+  const randomIndex = Math.floor(Math.random() * gameState.characters.length);
+  return gameState.target = randomIndex   
+}
+
 export function enemyAttack() {
   const enemy = gameState.enemies[gameState.activeEnemyIndex];
-  const randomIndex = Math.floor(Math.random() * gameState.characters.length);
-  const target = gameState.characters[randomIndex];
+  const randomPlayer = randomChoiceE()
+  console.log(`randomwy choice przy ataku to ${randomPlayer}`)
+  const target = gameState.characters[randomPlayer];
   target.takeDmg(enemy.e_dmg);
-  console.log(`PRZECIWNIK WYBIERA GRACZA ${randomIndex}`);
+  console.log(`PRZECIWNIK WYBIERA GRACZA ${randomPlayer}`);
   console.log(`zenemy zadal orbrazenia ${target.ch_hp}`);
   console.log(`atakuje Przeciwnik nr ${target.ch_id}`);
   // console.log(`bohater po ataku enemy ma: ${character.ch_hp} punktow hp.`)
