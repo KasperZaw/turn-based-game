@@ -1,18 +1,18 @@
-.characters-div {
-  display: flex;
-  flex-direction: column;
-}
 
 img {
-  height: 320px;
+  height: 380px;
 }
 
 .characters-group {
-  bottom: 150px;
-  left: 10px;
-  width: 100%;
   display: flex;
-  gap: 10px;
+  height: 500px;
+}
+
+.characters-div {
+  display: flex;
+  flex-direction: column;
+  transition: transform 1s ease;
+
 }
 
 .enemy-div {
@@ -22,3 +22,4 @@ img {
 .enemy-div:hover {
   transform: scale(1.2);
 }
+

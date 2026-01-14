@@ -40,11 +40,13 @@ export function nextEnemyTurn() {
 }
 
 export function getActiveCharacter() {
-  return gameState.characters[gameState.activeCharacterIndex];
+  const activeCharacter = gameState.characters[gameState.activeCharacterIndex];
+  return  activeCharacter;
+
 }
 
 export function attackEnemytest(enemy) {
-  const activeCharacter = gameState.characters[gameState.activeCharacterIndex];
+  const activeCharacter = getActiveCharacter();
   enemy.takeDmg(activeCharacter.ch_dmg);
   console.log(`bohater zadal dmg w wysokosci: ${activeCharacter.ch_dmg}`);
   console.log(`enemy ma tyle hp: ${enemy.e_hp}`);
@@ -63,6 +65,16 @@ export function enemyAttack() {
   target.takeDmg(enemy.e_dmg);
   console.log(`PRZECIWNIK WYBIERA GRACZA ${randomIndex}`);
   console.log(`zenemy zadal orbrazenia ${target.ch_hp}`);
-  console.log(`atakuje Przeciwnik nr ${target.e_id}`);
+  console.log(`atakuje Przeciwnik nr ${target.ch_id}`);
   // console.log(`bohater po ataku enemy ma: ${character.ch_hp} punktow hp.`)
+}
+
+export function playerTurn() {
+  gameState.phase = "playerTurn"
+}
+export function enemyTurn() {
+  gameState.phase = "enemyTurn"
+}
+export function chooseEnemy() {
+  gameState.phase = "chooseEnemy"
 }
