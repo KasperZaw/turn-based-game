@@ -1,3 +1,4 @@
+import { createCharacter } from "../characters/ui.js";
 import { getActiveCharacter, getActiveEnemy } from "../fightLogic/gameManager.js";
 import { gameState } from "../fightLogic/gameManager.js";
 
@@ -50,7 +51,7 @@ export function characterAttackAnimation(enemy) {
     setTimeout(() => {
       resetAnimation(heroEl, enemyEl);
     }, 3000);
-
+    healthBarAnimation();
   }
 
 
@@ -76,4 +77,22 @@ export function enemyAttackAnimation() {
   setTimeout(() => {
     resetAnimation(targetHeroEl, activeEnemy);
   }, 3000);
+}
+export function healthBarAnimation() {
+  const activeHero = gameState.characters[gameState.activeCharacterIndex];
+  const activeHeroDmg = activeHero.ch_dmg;
+  const selectedEnemy = gameState.enemies[gameState.selectedEnemy];
+  const selectedEnemyHp = selectedEnemy.e_hp;
+
+  const take_dmg_from_bar = Math.floor((activeHeroDmg / selectedEnemyHp) * 100)
+  const currentUiHp = selectedEnemy.hp_bar.style.width;
+  const currentUiHpNum = parseFloat(
+    selectedEnemy.hp_bar.style.width || "100%"
+  );
+  console.log(`aktualne hp przeciwnika to ${currentUiHpNum}`)
+  
+  const hp_after_attack = currentUiHpNum - take_dmg_from_bar
+  console.log(`aktualne zabrane hp przeciwnika to ${hp_after_attack}`)
+  selectedEnemy.hp_bar.style.width = `${hp_after_attack}%`
+ 
 }

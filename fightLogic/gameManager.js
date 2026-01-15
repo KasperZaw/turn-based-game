@@ -15,6 +15,7 @@ export const gameState = {
   enemy_choice: "",
   player_choice: "",
   enemy_id: null,
+  selectedEnemy: null
 };
 
 export function ascriptionState(characters, enemies) {
@@ -22,6 +23,7 @@ export function ascriptionState(characters, enemies) {
   gameState.activeCharacterIndex = 0;
   gameState.enemy_id;
   gameState.target;
+  gameState.selectedEnemy;
   gameState.enemies = enemies;
   gameState.activeEnemyIndex = 0;
   gameState.phase = "chooseEnemy";

@@ -29,6 +29,8 @@ export function gameManagerUi(heroes, enemies) {
         enemy.dom?.addEventListener("click", () => {
             if (gameState.phase !== "playerTurn") return;
             console.log(enemy.e_id)
+            gameState.selectedEnemy = enemy.e_id;
+            console.log(`nadanie przeciwnika dziala ${gameState.selectedEnemy}`)
             attackEnemytest(enemy);
             characterAttackAnimation(enemy);
             console.log(`atak zostal wykonany na postaci: ${enemy.e_id  }`)

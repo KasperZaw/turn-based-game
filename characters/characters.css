@@ -11,15 +11,43 @@ img {
 .characters-div {
   display: flex;
   flex-direction: column;
+  align-items: center;
   transition: transform 1s ease;
 
 }
 
 .enemy-div {
-  transition: 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 1s ease;
 }
 
 .enemy-div:hover {
   transform: scale(1.2);
 }
 
+.hp-bar {
+  background-color: green;
+  width: 100%;
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.hp-bar-bg {
+  width: 150px;
+  border: 1px solid black;
+}
+
+
+.hp-bar-enemy {
+  background-color: green;
+  width: 100%;
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.hp-bar-bg-enemy {
+  width: 150px;
+  border: 1px solid black;
+}
