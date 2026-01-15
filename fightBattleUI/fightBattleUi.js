@@ -25,31 +25,19 @@ export function dotArea(heroEl, enemyEl) {
 }
 
 export function resetAnimation(heroEl, enemyEl) {
-  requestAnimationFrame(() => {
     heroEl.style.transform = "translate(0, 0)";
-  });
-
-  requestAnimationFrame(() => {
     enemyEl.style.transform = "translate(0, 0)";
-  });
 }
 
-export function showCharacter(enemy) {
+export function characterAttackAnimation(enemy) {
   const heroEl = getActiveCharacter().element;
   const enemyEl = enemy.dom;
-  const activeEnemy = getActiveEnemy().dom;
 
-  const { heroDX, heroDY, enemyDX, enemyDY } =
+    const { heroDX, heroDY, enemyDX, enemyDY } =
     dotArea(heroEl, enemyEl);
-    const targetIndex = gameState.target;
-    const targetHero = gameState.characters[targetIndex];
-    const targetHeroEl = targetHero.element;
+ 
     
-      console.log(targetHero)
-
-  if(gameState.phase === "playerTurn") {
-
-    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
       heroEl.style.transform =
         `translate(${heroDX - 200}px, ${heroDY}px)`;
     });
@@ -62,21 +50,30 @@ export function showCharacter(enemy) {
     setTimeout(() => {
       resetAnimation(heroEl, enemyEl);
     }, 3000);
-  } else {
-    requestAnimationFrame(() => {
-      targetHeroEl.style.transform =
-        `translate(${heroDX - 200}px, ${heroDY}px)`;
-        console.log("targetowanie dziala")
-    });
-  
-    requestAnimationFrame(() => {
-      activeEnemy.style.transform =
-        `translate(${enemyDX + 200}px, ${enemyDY}px)`;
-    });
-  
-    setTimeout(() => {
-      resetAnimation(targetHeroEl, activeEnemy);
-    }, 3000);
+
   }
 
+
+export function enemyAttackAnimation() {
+  const activeEnemy = getActiveEnemy().dom;
+  const targetIndex = gameState.target;
+  const targetHero = gameState.characters[targetIndex];
+  const targetHeroEl = targetHero.element;
+  const { heroDX, heroDY, enemyDX, enemyDY } =
+  dotArea(targetHeroEl, activeEnemy);
+
+  requestAnimationFrame(() => {
+    targetHeroEl.style.transform =
+      `translate(${heroDX - 200}px, ${heroDY}px)`;
+      console.log("targetowanie dziala")
+  });
+
+  requestAnimationFrame(() => {
+    activeEnemy.style.transform =
+      `translate(${enemyDX + 200}px, ${enemyDY}px)`;
+  });
+
+  setTimeout(() => {
+    resetAnimation(targetHeroEl, activeEnemy);
+  }, 3000);
 }

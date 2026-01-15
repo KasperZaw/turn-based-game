@@ -6,7 +6,7 @@ import { nextCharacterTurn } from "./gameManager.js";
 import { Enemy } from "../enemies/enemies.js";
 import { attackEnemytest } from "./gameManager.js";
 import { enemyAttack } from "./gameManager.js";
-import { showCharacter } from "../fightBattleUI/fightBattleUi.js";
+import { characterAttackAnimation, enemyAttackAnimation } from "../fightBattleUI/fightBattleUi.js";
 const atc_btn = document.getElementById("attack_btn");
 export function gameManagerUi(heroes, enemies) {
     
@@ -29,15 +29,15 @@ export function gameManagerUi(heroes, enemies) {
         enemy.dom?.addEventListener("click", () => {
             if (gameState.phase !== "playerTurn") return;
             console.log(enemy.e_id)
-            showCharacter(enemy);
             attackEnemytest(enemy);
+            characterAttackAnimation(enemy);
             console.log(`atak zostal wykonany na postaci: ${enemy.e_id  }`)
             console.log("pora na przeciwnika")
             enemyTurn()
             setTimeout(() => {
 
                 enemyAttack();
-                showCharacter(enemy);
+                enemyAttackAnimation()
             },8000)
             chooseEnemy();
         })
