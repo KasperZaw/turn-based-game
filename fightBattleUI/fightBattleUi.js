@@ -79,20 +79,30 @@ export function enemyAttackAnimation() {
   }, 3000);
 }
 export function healthBarAnimation() {
-  const activeHero = gameState.characters[gameState.activeCharacterIndex];
-  const activeHeroDmg = activeHero.ch_dmg;
   const selectedEnemy = gameState.enemies[gameState.selectedEnemy];
   const selectedEnemyHp = selectedEnemy.e_hp;
+  const selectedEnemyMaxHp = selectedEnemy.e_max_hp
 
-  const take_dmg_from_bar = Math.floor((activeHeroDmg / selectedEnemyHp) * 100)
-  const currentUiHp = selectedEnemy.hp_bar.style.width;
-  const currentUiHpNum = parseFloat(
-    selectedEnemy.hp_bar.style.width || "100%"
-  );
-  console.log(`aktualne hp przeciwnika to ${currentUiHpNum}`)
-  
-  const hp_after_attack = currentUiHpNum - take_dmg_from_bar
-  console.log(`aktualne zabrane hp przeciwnika to ${hp_after_attack}`)
-  selectedEnemy.hp_bar.style.width = `${hp_after_attack}%`
+  const take_dmg_from_bar = Math.floor((selectedEnemyHp / selectedEnemyMaxHp) * 100)
+
+  const dmg_taken = (selectedEnemyMaxHp /  selectedEnemyMaxHp * 100) - take_dmg_from_bar;
+  console.log(dmg_taken)
+
+  selectedEnemy.hp_bar.style.width = `${take_dmg_from_bar}%`
+ 
+}
+
+export function playerhealthBarAnimation() {
+  const targetIndex = gameState.target;
+  const targetHero = gameState.characters[targetIndex];
+  const targetHeroHp = targetHero.ch_hp;
+  const targetHeroMaxHp = targetHero.ch_max_hp
+
+  const take_dmg_from_bar = Math.floor((targetHeroHp / targetHeroMaxHp) * 100)
+
+  const dmg_taken = (targetHeroHp /  targetHeroMaxHp * 100) - take_dmg_from_bar;
+  console.log(dmg_taken)
+
+  targetHero.hp_bar.style.width = `${take_dmg_from_bar}%`
  
 }

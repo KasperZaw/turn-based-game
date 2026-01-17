@@ -3,6 +3,7 @@ export class Character {
     ch_class,
     ch_name,
     ch_hp,
+    ch_max_hp,
     ch_mana,
     ch_dmg,
     ch_spell,
@@ -17,6 +18,7 @@ export class Character {
     this.ch_spell = ch_spell;
     this.ch_img = ch_img;
     this.ch_id = ch_id;
+    this.ch_max_hp = ch_max_hp;
   }
 
   takeDmg(amount) {

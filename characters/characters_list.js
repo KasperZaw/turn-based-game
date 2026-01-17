@@ -4,6 +4,7 @@ export const warrior = new Character(
   "Warrior",
   "Arthas",
   120,
+  120,
   30,
   15,
   "Shield Slam",
@@ -13,6 +14,7 @@ export const warrior = new Character(
 export const mage = new Character(
   "Mage",
   "Cintri",
+  120,
   120,
   30,
   15,
@@ -24,6 +26,7 @@ export const archer = new Character(
   "archer",
   "Legolas",
   120,
+  120,
   30,
   15,
   "Shield Slam",
@@ -33,6 +36,7 @@ export const archer = new Character(
 export const healer = new Character(
   "Healer",
   "Arthas",
+  120,
   120,
   30,
   15,

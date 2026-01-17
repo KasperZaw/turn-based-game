@@ -25,6 +25,8 @@ export function createCharacter(character) {
   character.element = character_div;
   character.nameElement = character_name;
   character.imgElement = ch_img;
+  character.hp_bar = hp_bar;
+
 
   return {
     element: character_div,

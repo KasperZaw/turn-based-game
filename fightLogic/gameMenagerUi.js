@@ -6,7 +6,7 @@ import { nextCharacterTurn } from "./gameManager.js";
 import { Enemy } from "../enemies/enemies.js";
 import { attackEnemytest } from "./gameManager.js";
 import { enemyAttack } from "./gameManager.js";
-import { characterAttackAnimation, enemyAttackAnimation } from "../fightBattleUI/fightBattleUi.js";
+import { characterAttackAnimation, enemyAttackAnimation, playerhealthBarAnimation } from "../fightBattleUI/fightBattleUi.js";
 const atc_btn = document.getElementById("attack_btn");
 export function gameManagerUi(heroes, enemies) {
     
@@ -40,6 +40,7 @@ export function gameManagerUi(heroes, enemies) {
 
                 enemyAttack();
                 enemyAttackAnimation()
+                playerhealthBarAnimation();
             },8000)
             chooseEnemy();
         })

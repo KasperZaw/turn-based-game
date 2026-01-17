@@ -4,6 +4,7 @@ export const ork = new Enemy(
   "ork",
   "dd",
   120,
+  120,
   30,
   15,
   "Shield Slam",
@@ -14,6 +15,7 @@ export const elf = new Enemy(
   "Elf",
   "xx",
   120,
+  120,
   30,
   15,
   "Shield Slam",
@@ -23,6 +25,7 @@ export const elf = new Enemy(
 export const druid = new Enemy(
   "druid",
   "ff",
+  120,
   120,
   30,
   15,
