@@ -1,10 +1,25 @@
-import { gameState } from "../fightLogic/gameManager";
-// bedziemy sie opierac na phase po ktore bedzie zmieniac sie
-// co kazda funkcje np po attack albo heal itp
-// poprawic nanzewnictwo faz
-// playerTurn, enemyTurn, enemyAttack, playerAttack
-function turnMengar() {
-  if (gameState.phase === "playerTurn") {
+import {
+  enemyTurn,
+  gameState,
+  chooseEnemy,
+  enemyAttack,
+} from "../fightLogic/gameManager.js";
+import { atc_btn } from "../fightLogic/gameMenagerUi.js";
+import { attackEnemytest } from "../fightLogic/gameManager.js";
 
+export function turnMenager() {
+  const selectedEnemyIndex = gameState.selectedEnemy;
+  const selectedEnemy = gameState.enemies[selectedEnemyIndex];
+  //atc_btn = true
+  if (gameState.phase === "playerTurn") {
+    attackEnemytest(selectedEnemy);
+    gameState.phase = "playerAttacking"
+  }
+  if (gameState.phase === "enemyTurn") {
+    enemyAttack();
+    gameState.phase = "enemyAttacking"
+  }
+  if (gameState.phase === "chooseEnemy") {
+    atc_btn.disabled = false;
   }
 }

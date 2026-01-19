@@ -5,16 +5,15 @@ export function createCharacter(character) {
   const characters_group = document.querySelector(".characters-group");
   const ch_img = document.createElement("img");
   const hp_bar = document.createElement("div");
-  const hp_bar_bg = document.createElement("div")
-
+  const hp_bar_bg = document.createElement("div");
 
   hp_bar.classList.add("hp-bar");
-  hp_bar_bg.classList.add("hp-bar-bg")
+  hp_bar_bg.classList.add("hp-bar-bg");
   character_name.textContent = character?.ch_name;
   character_hp.textContent = character.ch_hp;
   ch_img.src = character.ch_img;
-  hp_bar_bg.append(hp_bar)
-  hp_bar.append(character_hp)
+  hp_bar_bg.append(hp_bar);
+  hp_bar.append(character_hp);
 
   character_div.classList.add("characters-div");
 
@@ -27,13 +26,11 @@ export function createCharacter(character) {
   character.imgElement = ch_img;
   character.hp_bar = hp_bar;
 
-
   return {
     element: character_div,
     nameElement: character_name,
     imgElement: ch_img,
     hpBar: hp_bar,
-    hpText: character_hp
+    hpText: character_hp,
   };
 }
-

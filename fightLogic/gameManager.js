@@ -15,7 +15,7 @@ export const gameState = {
   enemy_choice: "",
   player_choice: "",
   enemy_id: null,
-  selectedEnemy: null
+  selectedEnemy: null,
 };
 
 export function ascriptionState(characters, enemies) {
@@ -45,8 +45,7 @@ export function nextEnemyTurn() {
 
 export function getActiveCharacter() {
   const activeCharacter = gameState.characters[gameState.activeCharacterIndex];
-  return  activeCharacter;
-
+  return activeCharacter;
 }
 
 export function attackEnemytest(enemy) {
@@ -64,13 +63,13 @@ export function getActiveEnemy() {
 
 export function randomChoiceE() {
   const randomIndex = Math.floor(Math.random() * gameState.characters.length);
-  return gameState.target = randomIndex   
+  return (gameState.target = randomIndex);
 }
 
 export function enemyAttack() {
   const enemy = gameState.enemies[gameState.activeEnemyIndex];
-  const randomPlayer = randomChoiceE()
-  console.log(`randomwy choice przy ataku to ${randomPlayer}`)
+  const randomPlayer = randomChoiceE();
+  console.log(`randomwy choice przy ataku to ${randomPlayer}`);
   const target = gameState.characters[randomPlayer];
   target.takeDmg(enemy.e_dmg);
   console.log(`PRZECIWNIK WYBIERA GRACZA ${randomPlayer}`);
@@ -80,11 +79,17 @@ export function enemyAttack() {
 }
 
 export function playerTurn() {
-  gameState.phase = "playerTurn"
+  gameState.phase = "playerTurn";
 }
 export function enemyTurn() {
-  gameState.phase = "enemyTurn"
+  gameState.phase = "enemyTurn";
 }
 export function chooseEnemy() {
-  gameState.phase = "chooseEnemy"
+  gameState.phase = "chooseEnemy";
+}
+export function playerAttacking() {
+  gameState.phase = "playerAttacking";
+}
+export function enemyAttacking() {
+  gameState.phase = "enemyAttacking";
 }
