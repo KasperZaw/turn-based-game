@@ -38,7 +38,7 @@ export function nextCharacterTurn() {
   );
 }
 
-export function nextEnemyTurn() {
+export function next() {
   gameState.activeEnemyIndex =
     (gameState.activeEnemyIndex + 1) % gameState.enemies.length;
 }
