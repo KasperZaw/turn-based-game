@@ -13,11 +13,11 @@ export function turnMenager() {
   //atc_btn = true
   if (gameState.phase === "playerTurn") {
     attackEnemytest(selectedEnemy);
-    gameState.phase = "playerAttacking"
+    gameState.phase = "playerAttacking";
   }
   if (gameState.phase === "enemyTurn") {
     enemyAttack();
-      gameState.phase = "enemyAttacking"
+    gameState.phase = "enemyAttacking";
   }
   if (gameState.phase === "chooseEnemy") {
     atc_btn.disabled = false;

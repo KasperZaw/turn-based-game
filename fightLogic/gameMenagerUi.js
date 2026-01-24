@@ -30,7 +30,6 @@ export function gameManagerUi(heroes, enemies) {
       console.log(`atak zostal wykonany na postaci: ${enemy.e_id}`);
       console.log("pora na przeciwnika");
       handlePhaseEffects();
-
     });
   });
 }
