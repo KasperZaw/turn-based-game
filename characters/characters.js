@@ -25,6 +25,10 @@ export class Character {
     this.ch_hp -= amount;
   }
   heal(amount) {
-    this.ch_p += amount;
+    if (this.ch_hp < this.ch_max_hp) {
+      this.ch_hp += amount;
+      console.log("enemy uleczonu");
+    }
+    console.log("bohater ma full hp");
   }
 }

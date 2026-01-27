@@ -16,6 +16,7 @@ export const gameState = {
   player_choice: "",
   enemy_id: null,
   selectedEnemy: null,
+  selectedCharacter: null,
 };
 
 export function ascriptionState(characters, enemies) {
@@ -24,6 +25,7 @@ export function ascriptionState(characters, enemies) {
   gameState.enemy_id;
   gameState.target;
   gameState.selectedEnemy;
+  gameState.selectedCharacter;
   gameState.enemies = enemies;
   gameState.activeEnemyIndex = 0;
   gameState.phase = "chooseEnemy";
@@ -38,7 +40,7 @@ export function nextCharacterTurn() {
   );
 }
 
-export function next() {
+export function nextEnemyTurn() {
   gameState.activeEnemyIndex =
     (gameState.activeEnemyIndex + 1) % gameState.enemies.length;
 }
@@ -55,6 +57,7 @@ export function attackEnemytest(enemy) {
   console.log(`enemy ma tyle hp: ${enemy.e_hp}`);
   console.log("testowe dzialanie attaku");
   console.log(gameState.phase);
+  nextCharacterTurn();
 }
 
 export function getActiveEnemy() {
@@ -75,7 +78,7 @@ export function enemyAttack() {
   console.log(`PRZECIWNIK WYBIERA GRACZA ${randomPlayer}`);
   console.log(`zenemy zadal orbrazenia ${target.ch_hp}`);
   console.log(`atakuje Przeciwnik nr ${target.ch_id}`);
-  // console.log(`bohater po ataku enemy ma: ${character.ch_hp} punktow hp.`)
+  nextEnemyTurn();
 }
 
 export function playerTurn() {

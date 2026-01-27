@@ -107,6 +107,22 @@ export function healthBarAnimation({ hp, maxHp, hpBar }) {
   hpBar.style.width = `${percent}%`;
 }
 
+export function addHp({ fromHp, toHp, maxHp, hpBar }) {
+  let hp = fromHp;
+  console.log("ADD HP DZIALA");
+  function animate() {
+    if (hp >= toHp) return;
+
+    hp += 0.5;
+
+    healthBarAnimation({ hp, maxHp, hpBar });
+    requestAnimationFrame(animate);
+    console.log("ANIMATION DZIALA");
+  }
+
+  animate();
+}
+
 export async function handlePhaseEffects() {
   if (gameState.phase === "playerAttacking") {
     const foe = gameState.enemies[gameState.selectedEnemy];
@@ -120,5 +136,17 @@ export async function handlePhaseEffects() {
     await enemyAttackAnimation();
 
     gameState.phase = "chooseEnemy";
+  }
+  if (gameState.phase === "playerHealAnimation") {
+    const selectedCharacterIndex = gameState.selectedCharacter;
+    const hero = gameState.characters[selectedCharacterIndex];
+    addHp({
+      fromHp: hero.ch_hp,
+      toHp: Math.min(hero.ch_hp + 20, hero.ch_max_hp),
+      maxHp: hero.ch_max_hp,
+      hpBar: hero.hp_bar,
+    });
+    console.log(hero.ch_hp);
+    gameState.phase = "enemyTurn";
   }
 }

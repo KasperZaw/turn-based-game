@@ -1,15 +1,16 @@
 import { createCharacter } from "../characters/ui.js";
 import { createEnemy } from "../enemies/ui_enemies.js";
-import { ascriptionState, gameState, playerTurn } from "./gameManager.js";
+import { ascriptionState, gameState } from "./gameManager.js";
 import { turnMenager } from "../turnLogic/turnLogic.js";
 import { handlePhaseEffects } from "../fightBattleUI/fightBattleUi.js";
 
-export const atc_btn = document.getElementById("attack_btn");
+const atc_btn = document.getElementById("attack_btn");
+const heal_btn = document.getElementById("heal_btn");
+
 export function gameManagerUi(heroes, enemies) {
   heroes.forEach((hero) => {
     createCharacter(hero);
   });
-
   enemies.forEach((enemy) => {
     createEnemy(enemy);
   });
@@ -17,11 +18,18 @@ export function gameManagerUi(heroes, enemies) {
 
   atc_btn.addEventListener("click", () => {
     if (gameState.phase !== "chooseEnemy") return;
-    playerTurn();
+    gameState.phase = "playerTurn";
     console.log("Wybierz przeciwnika");
     console.log(`faza zmieniona po kliknieciu attak na: ${gameState.phase}`);
     handlePhaseEffects();
   });
+  heal_btn.addEventListener("click", () => {
+    if (gameState.phase !== "chooseEnemy") return;
+    gameState.phase = "playerTurnHeal";
+    console.log("heal dziala");
+    console.log(gameState.phase);
+  });
+
   enemies.forEach((enemy) => {
     enemy.dom?.addEventListener("click", () => {
       if (gameState.phase !== "playerTurn") return;
@@ -29,6 +37,16 @@ export function gameManagerUi(heroes, enemies) {
       turnMenager();
       console.log(`atak zostal wykonany na postaci: ${enemy.e_id}`);
       console.log("pora na przeciwnika");
+      handlePhaseEffects();
+    });
+  });
+  heroes.forEach((hero) => {
+    hero.element.addEventListener("click", () => {
+      if (gameState.phase !== "playerTurnHeal") return;
+      gameState.selectedCharacter = hero.ch_id;
+      console.log(gameState.selectedCharacter);
+      console.log("for each dziala");
+      turnMenager();
       handlePhaseEffects();
     });
   });
