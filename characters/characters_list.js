@@ -1,25 +1,15 @@
 import { Character } from "../characters/characters.js";
 
-export const warrior = new Character(
-  "Warrior",
-  "Arthas",
-  120,
-  120,
-  30,
-  15,
-  "Shield Slam",
-  "./character.png",
-  0,
-);
+
 export const mage = new Character(
   "Mage",
   "Cintri",
-  120,
-  120,
+  20,
+  20,
   30,
   15,
   "Shield Slam",
-  "./character.png",
+  "./assets/img/charactersImg/mage.png",
   1,
 );
 export const archer = new Character(
@@ -30,7 +20,7 @@ export const archer = new Character(
   30,
   15,
   "Shield Slam",
-  "./character.png",
+  "./assets/img/charactersImg/archer.png",
   2,
 );
 export const healer = new Character(
@@ -41,7 +31,23 @@ export const healer = new Character(
   30,
   15,
   "Shield Slam",
-  "./character.png",
+  "./assets/img/charactersImg/healer.png",
   3,
 );
-export const character_arr = [warrior, mage, archer, healer];
+export const warrior = new Character(
+  "Warrior",
+  "Arthas",
+  120,
+  120,
+  30,
+  15,
+  "Shield Slam",
+  "./assets/img/charactersImg/warrior.png",
+  0,
+);
+export const character_arr = [healer, archer, mage ,warrior];
+
+warrior.images.attack = "/assets/img/charactersImg/warrior_animation.png";
+mage.images.attack = "/assets/img/charactersImg/mage_animation.png";
+archer.images.attack = "/assets/img/charactersImg/archer_animation.png";
+healer.images.attack = "/assets/img/charactersImg/healer_animation.png";

@@ -19,8 +19,21 @@ export class Enemy {
     this.e_special_attack = e_special_attack;
     this.e_img = e_img;
     this.e_id = e_id;
+    this.images = {
+      stand: e_img,
+      attack: null,
+      dead: null,
+    }
   }
   takeDmg(amount) {
     this.e_hp -= amount;
+  }
+  isAlive() {
+    return this.e_hp > 0;
+  }
+  setVisualState(state) {
+    const src = this.images[state];
+    if (!src || !this.enemyImg) return;
+    this.enemyImg.src = src;
   }
 }

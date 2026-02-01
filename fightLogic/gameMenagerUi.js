@@ -3,9 +3,10 @@ import { createEnemy } from "../enemies/ui_enemies.js";
 import { ascriptionState, gameState } from "./gameManager.js";
 import { turnMenager } from "../turnLogic/turnLogic.js";
 import { handlePhaseEffects } from "../fightBattleUI/fightBattleUi.js";
-
+import { nextCharacterTurn } from "./gameManager.js";
 const atc_btn = document.getElementById("attack_btn");
 const heal_btn = document.getElementById("heal_btn");
+
 
 export function gameManagerUi(heroes, enemies) {
   heroes.forEach((hero) => {
@@ -43,12 +44,14 @@ export function gameManagerUi(heroes, enemies) {
   heroes.forEach((hero) => {
     hero.element.addEventListener("click", () => {
       if (gameState.phase !== "playerTurnHeal") return;
-      gameState.selectedCharacter = hero.ch_id;
-      console.log(gameState.selectedCharacter);
-      console.log("for each dziala");
-      turnMenager();
-      handlePhaseEffects();
+      if(hero.ch_hp !== hero.ch_max_hp) {
+        gameState.selectedCharacter = hero.ch_id;
+        console.log(gameState.selectedCharacter);
+        console.log("for each dziala");
+        nextCharacterTurn();
+        turnMenager();
+        handlePhaseEffects();
+      }
     });
   });
 }
-console.log(`${gameState.phase}`);

@@ -19,6 +19,13 @@ export class Character {
     this.ch_img = ch_img;
     this.ch_id = ch_id;
     this.ch_max_hp = ch_max_hp;
+    this.images = {
+      stand: ch_img,
+      attack: null,
+      dead: null,
+    }
+    this.visualState = "stand";
+
   }
 
   takeDmg(amount) {
@@ -31,4 +38,14 @@ export class Character {
     }
     console.log("bohater ma full hp");
   }
+  isAlive() {
+    return this.ch_hp > 0;
+  }
+  setVisualState(state) {
+    const src = this.images[state];
+    if (!src || !this.imgElement) return;
+  
+    this.imgElement.src = src;
+  }
+  
 }

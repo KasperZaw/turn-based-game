@@ -4,6 +4,7 @@ import {
   gameState,
 } from "../fightLogic/gameManager.js";
 import { turnMenager } from "../turnLogic/turnLogic.js";
+import { nextCharacterTurn } from "../fightLogic/gameManager.js";
 
 export function dotArea(heroEl, enemyEl) {
   const heroPos = heroEl.getBoundingClientRect();
@@ -41,29 +42,50 @@ function waitForTransition(element, ms = 0) {
       if (e.propertyName !== "transform") return;
 
       element.removeEventListener("transitionend", handler);
-      resolve();
+      setTimeout(() => {
+
+        resolve();
+      }, ms)
     };
 
     element.addEventListener("transitionend", handler);
   });
 }
 
+async function swapAnimation({type, duration, state}) {
+  await wait(duration);
+  type.setVisualState(state);
+  await wait(duration);
+  type.setVisualState("stand");
+}
+
 export async function characterAttackAnimation(enemy) {
   const heroEl = getActiveCharacter().element;
-  const hero = gameState.characters[gameState.target];
   const enemyEl = enemy.dom;
-  const enemyS = gameState.enemies[gameState.selectedEnemy];
-
+  const activeCharacter = getActiveCharacter();
   const { heroDX, heroDY, enemyDX, enemyDY } = dotArea(heroEl, enemyEl);
 
   requestAnimationFrame(() => {
-    heroEl.style.transform = `translate(${heroDX - 200}px, ${heroDY}px)`;
-    enemyEl.style.transform = `translate(${enemyDX + 200}px, ${enemyDY}px)`;
+    heroEl.style.transform = `translate(${heroDX - 80}px, ${0}px)`;
+    enemyEl.style.transform = `translate(${enemyDX + 80}px, ${0}px)`;
   });
 
-  await Promise.all([waitForTransition(heroEl), waitForTransition(enemyEl)]);
-
-  healthBarAnimation({
+  await Promise.all([
+    waitForTransition(heroEl, 1800), 
+    waitForTransition(enemyEl, 1800),
+    swapAnimation({
+      type: activeCharacter,
+      duration: 800,
+      state: "attack"
+    }),
+    swapAnimation({
+      type: enemy,
+      duration: 800,
+      state: "attack"
+    })
+  ]);
+      
+    healthBarAnimation({
     hp: enemy.e_hp,
     maxHp: enemy.e_max_hp,
     hpBar: enemy.hp_bar,
@@ -77,23 +99,34 @@ export async function enemyAttackAnimation() {
   const targetHero = gameState.characters[targetIndex];
   const targetHeroEl = targetHero.element;
   const hero = gameState.characters[gameState.target];
-
+  const enemy = getActiveEnemy();
+  
   const { heroDX, heroDY, enemyDX, enemyDY } = dotArea(
     targetHeroEl,
     activeEnemy,
   );
 
   requestAnimationFrame(() => {
-    targetHeroEl.style.transform = `translate(${heroDX - 200}px, ${heroDY}px)`;
-    activeEnemy.style.transform = `translate(${enemyDX + 200}px, ${enemyDY}px)`;
+    targetHeroEl.style.transform = `translate(${heroDX - 80}px, ${0}px)`;
+    activeEnemy.style.transform = `translate(${enemyDX + 80}px, ${0}px)`;
     console.log("animacja przeciwnika sie uruchamia");
   });
 
   await Promise.all([
-    waitForTransition(targetHeroEl),
-    waitForTransition(activeEnemy),
+    waitForTransition(targetHeroEl, 500),
+    waitForTransition(activeEnemy, 500),
+    swapAnimation({
+      type: targetHero,
+      duration: 800,
+      state: "attack"
+    }),
+    swapAnimation({
+      type: enemy,
+      duration: 800,
+      state: "attack"
+    })
   ]);
-
+ 
   healthBarAnimation({
     hp: hero.ch_hp,
     maxHp: hero.ch_max_hp,
@@ -109,7 +142,6 @@ export function healthBarAnimation({ hp, maxHp, hpBar }) {
 
 export function addHp({ fromHp, toHp, maxHp, hpBar }) {
   let hp = fromHp;
-  console.log("ADD HP DZIALA");
   function animate() {
     if (hp >= toHp) return;
 
@@ -131,10 +163,8 @@ export async function handlePhaseEffects() {
     turnMenager();
   }
   if (gameState.phase === "enemyAttacking") {
-    console.log(`Weszlismy do enemy attacking${gameState.phase}`);
     await wait(2000);
     await enemyAttackAnimation();
-
     gameState.phase = "chooseEnemy";
   }
   if (gameState.phase === "playerHealAnimation") {
@@ -146,7 +176,7 @@ export async function handlePhaseEffects() {
       maxHp: hero.ch_max_hp,
       hpBar: hero.hp_bar,
     });
-    console.log(hero.ch_hp);
     gameState.phase = "enemyTurn";
+    turnMenager();
   }
 }

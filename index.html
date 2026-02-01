@@ -11,23 +11,14 @@
       <nav>
         <button data-route="menu" class="route-btn">Menu</button>
         <button data-route="game" class="route-btn">Gra</button>
-        <button data-route="settings" class="route-btn">Ustawienia</button>
+        <button data-route="map" class="route-btn">Ustawienia</button>
       </nav>
       <section data-view="menu">
-        <form>
-          <h2>Logowanie</h2>
-          <label>
-            Email
-            <input type="email" name="email" required />
-          </label>
-          <br /><br />
-          <label>
-            Hasło
-            <input type="password" name="password" required />
-          </label>
-          <br /><br />
-          <button type="submit">Zaloguj się</button>
-        </form>
+        <div class="start-menu">
+          <a data-route="map" class="route-btn">
+            <img src="./assets/img/background/play-btn-bg.png" alt="play" class="play"></img>
+          </a>
+        </div>
       </section>
       <section data-view="game" hidden>
         <div class="fight-bg"></div>
@@ -36,13 +27,22 @@
           <div class="enemies-group"></div>
         </div>
         <div class="player-menu">
-          <button id="spells_btn">spells</button>
-          <button id="items_btn">items</button>
-          <button id="attack_btn">attack</button>
-          <button id="heal_btn">heal</button>
+          <button id="spells_btn">
+            <img src="./assets/img/menu-btn/special-attack-btn.png" alt="special-attack">
+          </button>
+          <button id="attack_btn">
+            <img src="./assets/img/menu-btn/atttack-btn.png" alt="attack">
+          </button>
+          <button id="heal_btn">
+            <img src="./assets/img/menu-btn/heal-btn.png" alt="heal">
+          </button>
         </div>
       </section>
-      <section data-view="settings" hidden>USTAWIENIA</section>
+      <section data-view="map" hidden>
+        <a data-route="game" class="route-btn">
+          <img src="./assets/img/map/ork-kingdom.png" alt="ork-kingdom" class="ork-kingdom">
+        </a>
+      </section>
     </main>
 
     <script src="./index.js" type="module"></script>

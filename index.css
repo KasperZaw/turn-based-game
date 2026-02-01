@@ -11,7 +11,21 @@ section {
   height: 100vh;
   width: 100vw;
 }
-
+[data-view="menu"] {
+  background-image: url("./assets/img/background/menu-bg.png");
+}
+.ork-kingdom {
+  height: 250px;
+  position: absolute;
+  right: 150px;
+  top: 120px;
+}
+[data-view="map"] {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  background-image: url('./assets/img/map/map-bg.png');
+}
 [data-view="game"] {
   height: 100vh;
   position: relative;
@@ -28,13 +42,11 @@ section {
   pointer-events: none;
 }
 
-/* bliższe tło (np. ziemia, skały) */
 [data-view="game"]::after {
   content: "";
   position: absolute;
   inset: 0;
   background-image: url("./bg_front.png");
-  background-size: cover;
   background-position: center;
   z-index: 1;
   pointer-events: none;
@@ -45,12 +57,12 @@ h1 {
 .fight-arena {
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: space-between;
   height: 100vh;
 }
 .enemies-group {
   display: flex;
-  padding-bottom: 100px;
+  height: 400px;
 }
 
 .cursor-attack {
@@ -62,7 +74,26 @@ h1 {
 .player-menu {
   position: absolute;
   top: 80%;
-  z-index: 2;
+  z-index: 3;
+  width: 350px;
+  height: 150px;
+  background-image: url("./assets/img/menu-btn/menu-panel.png");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.player-menu > button{
+  background: none;
+  border: none;
+  padding: 0;
+}
+.player-menu > button:hover{
+  transform: scale(1.1);
+}
+.player-menu > button > img{
+  height: 80px;
+  cursor: pointer;
 }
 
 .fighting_contener {
@@ -99,4 +130,22 @@ h1 {
   justify-content: center;
 
   pointer-events: none;
+}
+
+.start-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+}
+.start-menu > button {
+  width: 200px;
+  height: 80px;
+  background-image: url("./assets/img/background/play-btn-bg.png");
+  
+}
+.play {
+  width: 600px;
+  cursor: pointer;
+  z-index: 3;
 }

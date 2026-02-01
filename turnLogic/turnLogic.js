@@ -1,5 +1,6 @@
-import { gameState, enemyAttack } from "../fightLogic/gameManager.js";
+import { gameState, enemyAttack, nextCharacterTurn , nextEnemyTurn, getActiveCharacter} from "../fightLogic/gameManager.js";
 import { attackEnemytest } from "../fightLogic/gameManager.js";
+import { handlePhaseEffects } from "../fightBattleUI/fightBattleUi.js";
 
 export function turnMenager() {
   const selectedEnemyIndex = gameState.selectedEnemy;
@@ -8,15 +9,16 @@ export function turnMenager() {
 
   if (gameState.phase === "playerTurn") {
     attackEnemytest(selectedEnemy);
-    gameState.phase = "playerAttacking";
   }
   if (gameState.phase === "enemyTurn") {
     enemyAttack();
+    nextCharacterTurn();
+    nextEnemyTurn();
     gameState.phase = "enemyAttacking";
+    handlePhaseEffects();
+    console.log(`PO ATAKU USTAWIAMY FAZE GRY NA${gameState.phase}`)
   }
-  // if (gameState.phase === "chooseEnemy") {
-  //   atc_btn.disabled = false;
-  // }
+
   if (gameState.phase === "playerTurnHeal") {
     gameState.characters[selectedCharacterIndex].heal(20);
     gameState.phase = "playerHealAnimation";

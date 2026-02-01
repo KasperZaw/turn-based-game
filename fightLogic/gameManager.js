@@ -1,10 +1,3 @@
-import { createCharacter } from "../characters/ui.js";
-import { createEnemy } from "../enemies/ui_enemies.js";
-import { character_arr } from "../characters/characters_list.js";
-import { enemies_arr } from "../enemies/enemies_list.js";
-import { Enemy } from "../enemies/enemies.js";
-const attackBtn = document.getElementById("attack_btn");
-
 export const gameState = {
   characters: [],
   enemies: [],
@@ -21,7 +14,7 @@ export const gameState = {
 
 export function ascriptionState(characters, enemies) {
   gameState.characters = characters;
-  gameState.activeCharacterIndex = 0;
+  gameState.activeCharacterIndex;
   gameState.enemy_id;
   gameState.target;
   gameState.selectedEnemy;
@@ -33,16 +26,35 @@ export function ascriptionState(characters, enemies) {
 }
 
 export function nextCharacterTurn() {
-  gameState.activeCharacterIndex =
-    (gameState.activeCharacterIndex + 1) % gameState.characters.length;
-  console.log(
-    `przelaczam na bohater ${gameState.activeCharacterIndex} o nazwie ${gameState.activeCharacterIndex.ch_name}`,
-  );
+ const startIndex = gameState.activeCharacterIndex;
+  do {
+    gameState.activeCharacterIndex =
+      (gameState.activeCharacterIndex + 1) % gameState.characters.length;
+
+      const character = gameState.characters[gameState.activeCharacterIndex]
+
+      if(character.isAlive()) {
+        return character
+      }
+  } while (gameState.activeCharacterIndex !== startIndex);
+  return null;
 }
 
 export function nextEnemyTurn() {
-  gameState.activeEnemyIndex =
+  const startEnemyIndex = gameState.activeEnemyIndex;
+
+  do {
+    gameState.activeEnemyIndex =
     (gameState.activeEnemyIndex + 1) % gameState.enemies.length;
+
+    const enemy = gameState.enemies[gameState.activeEnemyIndex];
+
+    if(enemy.isAlive()) {
+      return enemy
+    }
+
+  } while (gameState.activeEnemyIndex !== startEnemyIndex)
+    return null
 }
 
 export function getActiveCharacter() {
@@ -51,13 +63,14 @@ export function getActiveCharacter() {
 }
 
 export function attackEnemytest(enemy) {
+  if (!enemy.isAlive()) return;
   const activeCharacter = getActiveCharacter();
   enemy.takeDmg(activeCharacter.ch_dmg);
   console.log(`bohater zadal dmg w wysokosci: ${activeCharacter.ch_dmg}`);
   console.log(`enemy ma tyle hp: ${enemy.e_hp}`);
   console.log("testowe dzialanie attaku");
   console.log(gameState.phase);
-  nextCharacterTurn();
+  gameState.phase = "playerAttacking";
 }
 
 export function getActiveEnemy() {
@@ -70,15 +83,21 @@ export function randomChoiceE() {
 }
 
 export function enemyAttack() {
-  const enemy = gameState.enemies[gameState.activeEnemyIndex];
-  const randomPlayer = randomChoiceE();
-  console.log(`randomwy choice przy ataku to ${randomPlayer}`);
-  const target = gameState.characters[randomPlayer];
+  const enemy = getActiveEnemy();
+  // zabezpieczenie przed enemy undefind  
+  if (!enemy || !enemy.isAlive()) return;
+
+  const aliveCharacters = gameState.characters.filter(c => c.isAlive());
+  if (aliveCharacters.length === 0) return;
+
+  const target =
+    aliveCharacters[Math.floor(Math.random() * aliveCharacters.length)];
+
   target.takeDmg(enemy.e_dmg);
-  console.log(`PRZECIWNIK WYBIERA GRACZA ${randomPlayer}`);
-  console.log(`zenemy zadal orbrazenia ${target.ch_hp}`);
-  console.log(`atakuje Przeciwnik nr ${target.ch_id}`);
-  nextEnemyTurn();
+
+  console.log(
+    `ENEMY ${enemy.e_id} ATAKUJE ${target.ch_id}, dmg: ${enemy.e_dmg}`
+  );
 }
 
 export function playerTurn() {

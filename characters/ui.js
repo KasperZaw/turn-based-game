@@ -25,12 +25,4 @@ export function createCharacter(character) {
   character.nameElement = character_name;
   character.imgElement = ch_img;
   character.hp_bar = hp_bar;
-
-  return {
-    element: character_div,
-    nameElement: character_name,
-    imgElement: ch_img,
-    hpBar: hp_bar,
-    hpText: character_hp,
-  };
 }
