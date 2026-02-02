@@ -2,9 +2,9 @@ import {
   getActiveCharacter,
   getActiveEnemy,
   gameState,
+  TurnPhase,
 } from "../fightLogic/gameManager.js";
 import { turnMenager } from "../turnLogic/turnLogic.js";
-import { nextCharacterTurn } from "../fightLogic/gameManager.js";
 
 export function dotArea(heroEl, enemyEl) {
   const heroPos = heroEl.getBoundingClientRect();
@@ -30,6 +30,31 @@ export function dotArea(heroEl, enemyEl) {
 export function resetAnimation(heroEl, enemyEl) {
   heroEl.style.transform = "translate(0, 0)";
   enemyEl.style.transform = "translate(0, 0)";
+}
+
+export function healthBarAnimation({ hp, maxHp, hpBar }) {
+  const percent = Math.floor((hp / maxHp) * 100);
+  hpBar.style.width = `${percent}%`;
+  console.log('HP BAR DATA:', {
+    hp,
+    maxHp,
+    percent: Math.floor((hp / maxHp) * 100)
+  });
+  
+}
+
+export function addHp({ fromHp, toHp, maxHp, hpBar }) {
+  let hp = fromHp;
+  function animate() {
+    if (hp >= toHp) return;
+
+    hp += 0.5;
+
+    healthBarAnimation({ hp, maxHp, hpBar });
+    requestAnimationFrame(animate);
+  }
+
+  animate();
 }
 
 function wait(ms) {
@@ -135,39 +160,21 @@ export async function enemyAttackAnimation() {
   resetAnimation(targetHeroEl, activeEnemy);
 }
 
-export function healthBarAnimation({ hp, maxHp, hpBar }) {
-  const percent = Math.floor((hp / maxHp) * 100);
-  hpBar.style.width = `${percent}%`;
-}
 
-export function addHp({ fromHp, toHp, maxHp, hpBar }) {
-  let hp = fromHp;
-  function animate() {
-    if (hp >= toHp) return;
-
-    hp += 0.5;
-
-    healthBarAnimation({ hp, maxHp, hpBar });
-    requestAnimationFrame(animate);
-    console.log("ANIMATION DZIALA");
-  }
-
-  animate();
-}
 
 export async function handlePhaseEffects() {
-  if (gameState.phase === "playerAttacking") {
+  if (gameState.phase === TurnPhase.PLAYER_ATTACKING) {
     const foe = gameState.enemies[gameState.selectedEnemy];
     await characterAttackAnimation(foe);
-    gameState.phase = "enemyTurn";
+    gameState.phase = TurnPhase.ENEMY_TURN;
     turnMenager();
   }
-  if (gameState.phase === "enemyAttacking") {
+  if (gameState.phase === TurnPhase.ENEMY_ATTACKING) {
     await wait(2000);
     await enemyAttackAnimation();
-    gameState.phase = "chooseEnemy";
+    gameState.phase = TurnPhase.CHOOSE_ENEMY;
   }
-  if (gameState.phase === "playerHealAnimation") {
+  if (gameState.phase === TurnPhase.PLAYER_HEAL_ANIMATION) {
     const selectedCharacterIndex = gameState.selectedCharacter;
     const hero = gameState.characters[selectedCharacterIndex];
     addHp({
@@ -176,7 +183,7 @@ export async function handlePhaseEffects() {
       maxHp: hero.ch_max_hp,
       hpBar: hero.hp_bar,
     });
-    gameState.phase = "enemyTurn";
+    gameState.phase = TurnPhase.ENEMY_TURN;
     turnMenager();
   }
 }

@@ -5,7 +5,7 @@ export const gameState = {
   activeEnemyIndex: 0,
   target: 0,
   phase: "chooseEnemy",
-  enemy_choice: "",
+  enemy_choice: "chooseEnemy",
   player_choice: "",
   enemy_id: null,
   selectedEnemy: null,
@@ -24,6 +24,16 @@ export function ascriptionState(characters, enemies) {
   gameState.phase = "chooseEnemy";
   console.log("przypisanie powiodlo sie");
 }
+
+export const TurnPhase = Object.freeze( {
+  PLAYER_TURN: "playerTurn",
+  ENEMY_TURN: "enemyTurn",
+  CHOOSE_ENEMY: "chooseEnemy",
+  PLAYER_ATTACKING: "playerAttacking",
+  ENEMY_ATTACKING: "enemyAttacking",
+  PLAYER_HEAL: "playerTurnHeal",
+  PLAYER_HEAL_ANIMATION: "playerHealAnimation"
+})
 
 export function nextCharacterTurn() {
  const startIndex = gameState.activeCharacterIndex;
@@ -70,7 +80,7 @@ export function attackEnemytest(enemy) {
   console.log(`enemy ma tyle hp: ${enemy.e_hp}`);
   console.log("testowe dzialanie attaku");
   console.log(gameState.phase);
-  gameState.phase = "playerAttacking";
+  gameState.phase = TurnPhase.PLAYER_ATTACKING;
 }
 
 export function getActiveEnemy() {
@@ -98,20 +108,4 @@ export function enemyAttack() {
   console.log(
     `ENEMY ${enemy.e_id} ATAKUJE ${target.ch_id}, dmg: ${enemy.e_dmg}`
   );
-}
-
-export function playerTurn() {
-  gameState.phase = "playerTurn";
-}
-export function enemyTurn() {
-  gameState.phase = "enemyTurn";
-}
-export function chooseEnemy() {
-  gameState.phase = "chooseEnemy";
-}
-export function playerAttacking() {
-  gameState.phase = "playerAttacking";
-}
-export function enemyAttacking() {
-  gameState.phase = "enemyAttacking";
 }
