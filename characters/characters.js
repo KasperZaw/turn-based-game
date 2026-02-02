@@ -9,6 +9,7 @@ export class Character {
     ch_spell,
     ch_img,
     ch_id,
+    attack_sound
   ) {
     this.ch_class = ch_class;
     this.ch_name = ch_name;
@@ -19,6 +20,7 @@ export class Character {
     this.ch_img = ch_img;
     this.ch_id = ch_id;
     this.ch_max_hp = ch_max_hp;
+    this.attack_sound = attack_sound;
     this.images = {
       stand: ch_img,
       attack: null,

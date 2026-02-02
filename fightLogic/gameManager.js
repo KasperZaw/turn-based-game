@@ -47,8 +47,9 @@ export function nextCharacterTurn() {
         return character
       }
   } while (gameState.activeCharacterIndex !== startIndex);
-  return null;
-}
+    alert("koniec walki przegrales")
+    location.reload();
+  }
 
 export function nextEnemyTurn() {
   const startEnemyIndex = gameState.activeEnemyIndex;

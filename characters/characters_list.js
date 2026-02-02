@@ -1,6 +1,5 @@
 import { Character } from "../characters/characters.js";
 
-
 export const mage = new Character(
   "Mage",
   "Cintri",
@@ -11,6 +10,7 @@ export const mage = new Character(
   "Shield Slam",
   "./assets/img/charactersImg/mage.png",
   1,
+  "fire_spell"
 );
 export const archer = new Character(
   "archer",
@@ -22,6 +22,7 @@ export const archer = new Character(
   "Shield Slam",
   "./assets/img/charactersImg/archer.png",
   2,
+  "arrow"
 );
 export const healer = new Character(
   "Healer",
@@ -33,6 +34,7 @@ export const healer = new Character(
   "Shield Slam",
   "./assets/img/charactersImg/healer.png",
   3,
+  "healer_spell"
 );
 export const warrior = new Character(
   "Warrior",
@@ -44,6 +46,7 @@ export const warrior = new Character(
   "Shield Slam",
   "./assets/img/charactersImg/warrior.png",
   0,
+  "sword"
 );
 export const character_arr = [healer, archer, mage ,warrior];
 

@@ -9,6 +9,7 @@ export class Enemy {
     e_special_attack,
     e_img,
     e_id,
+    attack_sound
   ) {
     this.e_class = e_class;
     this.e_name = e_name;
@@ -19,6 +20,7 @@ export class Enemy {
     this.e_special_attack = e_special_attack;
     this.e_img = e_img;
     this.e_id = e_id;
+    this.attack_sound = attack_sound;
     this.images = {
       stand: e_img,
       attack: null,

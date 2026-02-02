@@ -5,6 +5,7 @@ import {
   TurnPhase,
 } from "../fightLogic/gameManager.js";
 import { turnMenager } from "../turnLogic/turnLogic.js";
+import { playSound } from "../soundsEffects/charactersSounds.js";
 
 export function dotArea(heroEl, enemyEl) {
   const heroPos = heroEl.getBoundingClientRect();
@@ -87,7 +88,6 @@ export async function characterAttackAnimation(enemy) {
   const enemyEl = enemy.dom;
   const activeCharacter = getActiveCharacter();
   const { heroDX, heroDY, enemyDX, enemyDY } = dotArea(heroEl, enemyEl);
-
   requestAnimationFrame(() => {
     heroEl.style.transform = `translate(${heroDX - 80}px, ${0}px)`;
     enemyEl.style.transform = `translate(${enemyDX + 80}px, ${0}px)`;
@@ -105,7 +105,8 @@ export async function characterAttackAnimation(enemy) {
       type: enemy,
       duration: 800,
       state: "attack"
-    })
+    }),
+    playSound(activeCharacter.attack_sound)
   ]);
       
     healthBarAnimation({
@@ -148,7 +149,8 @@ export async function enemyAttackAnimation() {
       type: enemy,
       duration: 800,
       state: "attack"
-    })
+    }),
+    playSound(enemy.attack_sound)
   ]);
  
   healthBarAnimation({

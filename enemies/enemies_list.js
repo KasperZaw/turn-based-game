@@ -10,6 +10,7 @@ export const ork = new Enemy(
   "Shield Slam",
   "./assets/img/enemy/ork.png",
   0,
+  "sword"
 );
 export const goblin = new Enemy(
   "Elf",
@@ -21,6 +22,7 @@ export const goblin = new Enemy(
   "Shield Slam",
   "./assets/img/enemy/goblin.png",
   1,
+  "dagger"
 );
 export const druid = new Enemy(
   "druid",
@@ -32,6 +34,7 @@ export const druid = new Enemy(
   "Shield Slam",
   "./assets/img/enemy/druid.png",
   2,
+  "druid_spell"
 );
 ork.images.attack = "./assets/img/enemy/ork_attack.png";
 goblin.images.attack = "./assets/img/enemy/goblin_attack.png";
