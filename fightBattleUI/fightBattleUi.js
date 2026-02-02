@@ -35,12 +35,7 @@ export function resetAnimation(heroEl, enemyEl) {
 export function healthBarAnimation({ hp, maxHp, hpBar, hpTextEl }) {
   const percent = Math.floor((hp / maxHp) * 100);
   hpBar.style.width = `${percent}%`;
-  console.log('HP BAR DATA:', {
-    hp,
-    maxHp,
-    percent: Math.floor((hp / maxHp) * 100)
-  });
-
+  
   if (hpTextEl) {
     hpTextEl.textContent = `${hp}`;
   }  

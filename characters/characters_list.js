@@ -4,8 +4,8 @@ import { Character } from "../characters/characters.js";
 export const mage = new Character(
   "Mage",
   "Cintri",
-  20,
-  20,
+  120,
+  120,
   30,
   15,
   "Shield Slam",
