@@ -21,8 +21,9 @@ export function createCharacter(character) {
   characters_group.appendChild(character_div);
 
   // 🔥 TU JEST KLUCZ
-  character.element = character_div;
+  character.dom = character_div;
   character.nameElement = character_name;
   character.imgElement = ch_img;
   character.hp_bar = hp_bar;
+  character.character_hp = character_hp;
 }

@@ -21,4 +21,5 @@ export function createEnemy(enemy) {
   enemy.enemyImg = enemy_img;
   enemy.dom = enemy_div;
   enemy.hp_bar = hp_bar;
+  enemy.enemy_hp = enemy_hp;
 }

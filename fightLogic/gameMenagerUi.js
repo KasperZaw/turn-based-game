@@ -43,7 +43,7 @@ export function gameManagerUi(heroes, enemies) {
     });
   });
   heroes.forEach((hero) => {
-    hero.element.addEventListener("click", () => {
+    hero.dom.addEventListener("click", () => {
       if (gameState.phase !== TurnPhase.PLAYER_HEAL) return;
       if(hero.ch_hp !== hero.ch_max_hp) {
         gameState.selectedCharacter = hero.ch_id;

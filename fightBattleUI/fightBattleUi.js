@@ -32,7 +32,7 @@ export function resetAnimation(heroEl, enemyEl) {
   enemyEl.style.transform = "translate(0, 0)";
 }
 
-export function healthBarAnimation({ hp, maxHp, hpBar }) {
+export function healthBarAnimation({ hp, maxHp, hpBar, hpTextEl }) {
   const percent = Math.floor((hp / maxHp) * 100);
   hpBar.style.width = `${percent}%`;
   console.log('HP BAR DATA:', {
@@ -40,7 +40,10 @@ export function healthBarAnimation({ hp, maxHp, hpBar }) {
     maxHp,
     percent: Math.floor((hp / maxHp) * 100)
   });
-  
+
+  if (hpTextEl) {
+    hpTextEl.textContent = `${hp}`;
+  }  
 }
 
 export function addHp({ fromHp, toHp, maxHp, hpBar }) {
@@ -85,7 +88,7 @@ async function swapAnimation({type, duration, state}) {
 }
 
 export async function characterAttackAnimation(enemy) {
-  const heroEl = getActiveCharacter().element;
+  const heroEl = getActiveCharacter().dom;
   const enemyEl = enemy.dom;
   const activeCharacter = getActiveCharacter();
   const { heroDX, heroDY, enemyDX, enemyDY } = dotArea(heroEl, enemyEl);
@@ -114,6 +117,7 @@ export async function characterAttackAnimation(enemy) {
     hp: enemy.e_hp,
     maxHp: enemy.e_max_hp,
     hpBar: enemy.hp_bar,
+    hpTextEl: enemy.enemy_hp
   });
   resetAnimation(heroEl, enemyEl);
 }
@@ -122,7 +126,7 @@ export async function enemyAttackAnimation() {
   const activeEnemy = getActiveEnemy().dom;
   const targetIndex = gameState.target;
   const targetHero = gameState.characters[targetIndex];
-  const targetHeroEl = targetHero.element;
+  const targetHeroEl = targetHero.dom;
   const hero = gameState.characters[gameState.target];
   const enemy = getActiveEnemy();
   
@@ -156,6 +160,7 @@ export async function enemyAttackAnimation() {
     hp: hero.ch_hp,
     maxHp: hero.ch_max_hp,
     hpBar: hero.hp_bar,
+    hpTextEl: hero.character_hp
   });
   resetAnimation(targetHeroEl, activeEnemy);
 }

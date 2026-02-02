@@ -94,7 +94,6 @@ export function randomChoiceE() {
 
 export function enemyAttack() {
   const enemy = getActiveEnemy();
-  // zabezpieczenie przed enemy undefind  
   if (!enemy || !enemy.isAlive()) return;
 
   const aliveCharacters = gameState.characters.filter(c => c.isAlive());
@@ -102,6 +101,8 @@ export function enemyAttack() {
 
   const target =
     aliveCharacters[Math.floor(Math.random() * aliveCharacters.length)];
+
+  gameState.target = gameState.characters.indexOf(target);
 
   target.takeDmg(enemy.e_dmg);
 
