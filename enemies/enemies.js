@@ -9,7 +9,7 @@ export class Enemy {
     e_special_attack,
     e_img,
     e_id,
-    attack_sound
+    attack_sound,
   ) {
     this.e_class = e_class;
     this.e_name = e_name;
@@ -25,7 +25,7 @@ export class Enemy {
       stand: e_img,
       attack: null,
       dead: null,
-    }
+    };
   }
   takeDmg(amount) {
     this.e_hp -= amount;

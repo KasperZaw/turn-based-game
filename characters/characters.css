@@ -17,7 +17,6 @@
 .characters-div > img {
   position: absolute;
   height: 300px;
-
 }
 .enemy-div {
   position: relative;
@@ -31,22 +30,16 @@
 }
 
 .enemy-div > img {
-  position: absolute  ;
+  position: absolute;
   height: 300px;
 }
-
 
 .enemy-div:hover {
   transform: scale(1.2);
 }
 
 .hp-bar {
-  background: linear-gradient(
-    to right,
-    #6b0f0f,
-    #b71c1c,
-    #ff3b3b
-  ); 
+  background: linear-gradient(to right, #6b0f0f, #b71c1c, #ff3b3b);
   width: 100%;
   transform-origin: left;
   transition: transform 0.3s ease;
@@ -58,20 +51,14 @@
   border: 4px solid #3a1414;
   border-radius: 3px;
   box-shadow:
-  inset 0 0 6px rgba(0,0,0,0.9),
-   0 0 6px rgba(120, 20, 20, 0.6);
+    inset 0 0 6px rgba(0, 0, 0, 0.9),
+    0 0 6px rgba(120, 20, 20, 0.6);
   margin-bottom: 20px;
   transform: translateY(-30px);
-
 }
 
 .hp-bar-enemy {
-  background: linear-gradient(
-    to right,
-    #6b0f0f,
-    #b71c1c,
-    #ff3b3b
-  ); 
+  background: linear-gradient(to right, #6b0f0f, #b71c1c, #ff3b3b);
   width: 100%;
   transform-origin: left;
   transition: transform 0.3s ease;
@@ -81,6 +68,6 @@
   width: 100px;
   border-radius: 3px;
   box-shadow:
-  inset 0 0 6px rgba(0,0,0,0.9),
-   0 0 6px rgba(120, 20, 20, 0.6);
-  }
+    inset 0 0 6px rgba(0, 0, 0, 0.9),
+    0 0 6px rgba(120, 20, 20, 0.6);
+}

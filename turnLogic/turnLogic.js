@@ -1,5 +1,11 @@
-import { gameState, enemyAttack, nextCharacterTurn , nextEnemyTurn, getActiveCharacter} from "../fightLogic/gameManager.js";
-import { attackEnemytest } from "../fightLogic/gameManager.js";
+import {
+  gameState,
+  enemyAttack,
+  nextCharacterTurn,
+  nextEnemyTurn,
+  getActiveCharacter,
+} from "../fightLogic/gameManager.js";
+import { attackEnemy } from "../fightLogic/gameManager.js";
 import { handlePhaseEffects } from "../fightBattleUI/fightBattleUi.js";
 import { TurnPhase } from "../fightLogic/gameManager.js";
 
@@ -9,7 +15,8 @@ export function turnMenager() {
   const selectedCharacterIndex = gameState.selectedCharacter;
 
   if (gameState.phase === TurnPhase.PLAYER_TURN) {
-    attackEnemytest(selectedEnemy);
+    attackEnemy(selectedEnemy);
+    console.log("kolej bohatera");
   }
   if (gameState.phase === TurnPhase.ENEMY_TURN) {
     enemyAttack();
@@ -17,7 +24,7 @@ export function turnMenager() {
     nextEnemyTurn();
     gameState.phase = TurnPhase.ENEMY_ATTACKING;
     handlePhaseEffects();
-    console.log(`PO ATAKU USTAWIAMY FAZE GRY NA${gameState.phase}`)
+    console.log(`PO ATAKU USTAWIAMY FAZE GRY NA${gameState.phase}`);
   }
 
   if (gameState.phase === TurnPhase.PLAYER_HEAL) {

@@ -9,7 +9,7 @@ export class Character {
     ch_spell,
     ch_img,
     ch_id,
-    attack_sound
+    attack_sound,
   ) {
     this.ch_class = ch_class;
     this.ch_name = ch_name;
@@ -25,9 +25,8 @@ export class Character {
       stand: ch_img,
       attack: null,
       dead: null,
-    }
+    };
     this.visualState = "stand";
-
   }
 
   takeDmg(amount) {
@@ -46,8 +45,7 @@ export class Character {
   setVisualState(state) {
     const src = this.images[state];
     if (!src || !this.imgElement) return;
-  
+
     this.imgElement.src = src;
   }
-  
 }

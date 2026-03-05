@@ -36,10 +36,10 @@ export function resetAnimation(heroEl, enemyEl) {
 export function healthBarAnimation({ hp, maxHp, hpBar, hpTextEl }) {
   const percent = Math.floor((hp / maxHp) * 100);
   hpBar.style.width = `${percent}%`;
-  
+
   if (hpTextEl) {
     hpTextEl.textContent = `${hp}`;
-  }  
+  }
 }
 
 export function addHp({ fromHp, toHp, maxHp, hpBar }) {
@@ -67,16 +67,15 @@ function waitForTransition(element, ms = 0) {
 
       element.removeEventListener("transitionend", handler);
       setTimeout(() => {
-
         resolve();
-      }, ms)
+      }, ms);
     };
 
     element.addEventListener("transitionend", handler);
   });
 }
 
-async function swapAnimation({type, duration, state}) {
+async function swapAnimation({ type, duration, state }) {
   await wait(duration);
   type.setVisualState(state);
   await wait(duration);
@@ -94,26 +93,26 @@ export async function characterAttackAnimation(enemy) {
   });
 
   await Promise.all([
-    waitForTransition(heroEl, 1800), 
+    waitForTransition(heroEl, 1800),
     waitForTransition(enemyEl, 1800),
     swapAnimation({
       type: activeCharacter,
       duration: 800,
-      state: "attack"
+      state: "attack",
     }),
     swapAnimation({
       type: enemy,
       duration: 800,
-      state: "attack"
+      state: "attack",
     }),
-    playSound(activeCharacter.attack_sound)
+    playSound(activeCharacter.attack_sound),
   ]);
-      
-    healthBarAnimation({
+
+  healthBarAnimation({
     hp: enemy.e_hp,
     maxHp: enemy.e_max_hp,
     hpBar: enemy.hp_bar,
-    hpTextEl: enemy.enemy_hp
+    hpTextEl: enemy.enemy_hp,
   });
   resetAnimation(heroEl, enemyEl);
 }
@@ -125,7 +124,7 @@ export async function enemyAttackAnimation() {
   const targetHeroEl = targetHero.dom;
   const hero = gameState.characters[gameState.target];
   const enemy = getActiveEnemy();
-  
+
   const { heroDX, heroDY, enemyDX, enemyDY } = dotArea(
     targetHeroEl,
     activeEnemy,
@@ -143,26 +142,24 @@ export async function enemyAttackAnimation() {
     swapAnimation({
       type: targetHero,
       duration: 800,
-      state: "attack"
+      state: "attack",
     }),
     swapAnimation({
       type: enemy,
       duration: 800,
-      state: "attack"
+      state: "attack",
     }),
-    playSound(enemy.attack_sound)
+    playSound(enemy.attack_sound),
   ]);
- 
+
   healthBarAnimation({
     hp: hero.ch_hp,
     maxHp: hero.ch_max_hp,
     hpBar: hero.hp_bar,
-    hpTextEl: hero.character_hp
+    hpTextEl: hero.character_hp,
   });
   resetAnimation(targetHeroEl, activeEnemy);
 }
-
-
 
 export async function handlePhaseEffects() {
   if (gameState.phase === TurnPhase.PLAYER_ATTACKING) {
@@ -185,6 +182,10 @@ export async function handlePhaseEffects() {
       maxHp: hero.ch_max_hp,
       hpBar: hero.hp_bar,
     });
+    console.log("selectedCharacter:", gameState.selectedCharacter);
+    console.log("characters:", gameState.characters);
+    console.log("hero:", hero);
+    console.log(`zaznaczony bohater to ${selectedCharacterIndex}`);
     gameState.phase = TurnPhase.ENEMY_TURN;
     turnMenager();
   }

@@ -25,47 +25,45 @@ export function ascriptionState(characters, enemies) {
   console.log("przypisanie powiodlo sie");
 }
 
-export const TurnPhase = Object.freeze( {
+export const TurnPhase = Object.freeze({
   PLAYER_TURN: "playerTurn",
   ENEMY_TURN: "enemyTurn",
   CHOOSE_ENEMY: "chooseEnemy",
   PLAYER_ATTACKING: "playerAttacking",
   ENEMY_ATTACKING: "enemyAttacking",
   PLAYER_HEAL: "playerTurnHeal",
-  PLAYER_HEAL_ANIMATION: "playerHealAnimation"
-})
+  PLAYER_HEAL_ANIMATION: "playerHealAnimation",
+});
 
 export function nextCharacterTurn() {
- const startIndex = gameState.activeCharacterIndex;
+  const startIndex = gameState.activeCharacterIndex;
   do {
     gameState.activeCharacterIndex =
       (gameState.activeCharacterIndex + 1) % gameState.characters.length;
 
-      const character = gameState.characters[gameState.activeCharacterIndex]
+    const character = gameState.characters[gameState.activeCharacterIndex];
 
-      if(character.isAlive()) {
-        return character
-      }
+    if (character.isAlive()) {
+      return character;
+    }
   } while (gameState.activeCharacterIndex !== startIndex);
-    alert("koniec walki przegrales")
-    location.reload();
-  }
+  window.location.href = "#loser";
+}
 
 export function nextEnemyTurn() {
   const startEnemyIndex = gameState.activeEnemyIndex;
 
   do {
     gameState.activeEnemyIndex =
-    (gameState.activeEnemyIndex + 1) % gameState.enemies.length;
+      (gameState.activeEnemyIndex + 1) % gameState.enemies.length;
 
     const enemy = gameState.enemies[gameState.activeEnemyIndex];
 
-    if(enemy.isAlive()) {
-      return enemy
+    if (enemy.isAlive()) {
+      return enemy;
     }
-
-  } while (gameState.activeEnemyIndex !== startEnemyIndex)
-    return null
+  } while (gameState.activeEnemyIndex !== startEnemyIndex);
+  window.location.href = "#winner";
 }
 
 export function getActiveCharacter() {
@@ -73,7 +71,7 @@ export function getActiveCharacter() {
   return activeCharacter;
 }
 
-export function attackEnemytest(enemy) {
+export function attackEnemy(enemy) {
   if (!enemy.isAlive()) return;
   const activeCharacter = getActiveCharacter();
   enemy.takeDmg(activeCharacter.ch_dmg);
@@ -97,7 +95,7 @@ export function enemyAttack() {
   const enemy = getActiveEnemy();
   if (!enemy || !enemy.isAlive()) return;
 
-  const aliveCharacters = gameState.characters.filter(c => c.isAlive());
+  const aliveCharacters = gameState.characters.filter((c) => c.isAlive());
   if (aliveCharacters.length === 0) return;
 
   const target =
@@ -108,6 +106,6 @@ export function enemyAttack() {
   target.takeDmg(enemy.e_dmg);
 
   console.log(
-    `ENEMY ${enemy.e_id} ATAKUJE ${target.ch_id}, dmg: ${enemy.e_dmg}`
+    `ENEMY ${enemy.e_id} ATAKUJE ${target.ch_id}, dmg: ${enemy.e_dmg}`,
   );
 }

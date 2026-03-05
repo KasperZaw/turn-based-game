@@ -14,6 +14,16 @@ section {
 [data-view="menu"] {
   background-image: url("./assets/img/background/menu-bg.png");
 }
+[data-view="winner"] {
+  background-image: url("./assets/screens/winner-screen.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+[data-view="loser"] {
+  background-image: url("./assets/screens/loser-screen.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .ork-kingdom {
   height: 250px;
   position: absolute;
@@ -24,7 +34,7 @@ section {
   background-size: cover;
   background-position: center;
   position: relative;
-  background-image: url('./assets/img/map/map-bg.png');
+  background-image: url("./assets/img/map/map-bg.png");
 }
 [data-view="game"] {
   height: 100vh;
@@ -35,7 +45,7 @@ section {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("./bg_back.png");
+  background-image: url("./assets/screens/bg_back.png");
   background-size: cover;
   background-position: center;
   z-index: -2;
@@ -46,7 +56,7 @@ section {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("./bg_front.png");
+  background-image: url("./assets/screens/bg_front.png");
   background-position: center;
   z-index: 1;
   pointer-events: none;
@@ -65,12 +75,6 @@ h1 {
   height: 400px;
 }
 
-.cursor-attack {
-  cursor:
-    url("./miecz2.png") 0 0,
-    pointer;
-}
-
 .player-menu {
   position: absolute;
   top: 80%;
@@ -83,15 +87,15 @@ h1 {
   align-items: center;
   justify-content: center;
 }
-.player-menu > button{
+.player-menu > button {
   background: none;
   border: none;
   padding: 0;
 }
-.player-menu > button:hover{
+.player-menu > button:hover {
   transform: scale(1.1);
 }
-.player-menu > button > img{
+.player-menu > button > img {
   height: 80px;
   cursor: pointer;
 }
@@ -136,13 +140,11 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 20px;
-
 }
 .start-menu > button {
   width: 200px;
   height: 80px;
   background-image: url("./assets/img/background/play-btn-bg.png");
-  
 }
 .play {
   width: 600px;

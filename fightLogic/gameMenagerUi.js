@@ -8,7 +8,6 @@ import { TurnPhase } from "./gameManager.js";
 const atc_btn = document.getElementById("attack_btn");
 const heal_btn = document.getElementById("heal_btn");
 
-
 export function gameManagerUi(heroes, enemies) {
   heroes.forEach((hero) => {
     createCharacter(hero);
@@ -42,11 +41,11 @@ export function gameManagerUi(heroes, enemies) {
       handlePhaseEffects();
     });
   });
-  heroes.forEach((hero) => {
+  heroes.forEach((hero, index) => {
     hero.dom.addEventListener("click", () => {
       if (gameState.phase !== TurnPhase.PLAYER_HEAL) return;
-      if(hero.ch_hp !== hero.ch_max_hp) {
-        gameState.selectedCharacter = hero.ch_id;
+      if (hero.ch_hp !== hero.ch_max_hp) {
+        gameState.selectedCharacter = index;
         console.log(gameState.selectedCharacter);
         console.log("for each dziala");
         nextCharacterTurn();
