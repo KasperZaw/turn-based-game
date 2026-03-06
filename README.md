@@ -4,6 +4,12 @@ A browser-based turn-based RPG built with **vanilla JavaScript** — no framewor
 
 ---
 
+## 🎮 Live game.
+
+https://turn-based-game-page.vercel.app/
+
+---
+
 ## 🎮 How to Play
 
 1. Click **⚔️ Attack** — then click an enemy to strike
